@@ -1,5 +1,15 @@
-import { createContext, useContext, useState, useEffect, use } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged,
+} from 'firebase/auth'
+
+const FirebaseContext = createContext(null);
 
 const firebaseConfig = {
   apiKey: "AIzaSyAh5apvZA5dn-21bG9k4i_MvWR8dMWsHWk",
@@ -11,12 +21,41 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
-const FirebaseContext = createContext(null);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 export const FirebaseProvider = ({ props }) => {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if(user) setUser(user);
+            else setUser(null);
+        })
+    }, [])
+
+    const signUp = (email, password) => {
+        createUserWithEmailAndPassword(auth, email, password);
+    }
+
+    const signIn = (email, password) => {
+        signInWithEmailAndPassword(auth, email, password);
+    }
+
+    const signinWithGoogle = () => {
+        signInWithPopup(auth, googleProvider);
+    }
+
+    const isLoggedIn = user ? true : false;
+
     return (
-        <FirebaseContext.Provider value={{}}>
+        <FirebaseContext.Provider value={{
+            signUp,
+            signIn,
+            signinWithGoogle,
+            user,
+            isLoggedIn,
+        }}>
             {props.children}
         </FirebaseContext.Provider>
     );
