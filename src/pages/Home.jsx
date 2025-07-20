@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Navbar from '../components/Navbar';
 import axios from 'axios';
 
 const Home = () => {
@@ -47,7 +48,9 @@ const Home = () => {
   }
 
   return (
-    <div className='flex flex-col p-4'>
+    <div>
+      <Navbar />
+      <div className='flex flex-col mx-1 my-15'>
       <h1 className=''>Fhir Api's Validator</h1>
       <h2>input</h2>
       <textarea 
@@ -79,6 +82,8 @@ const Home = () => {
         </pre>
       </div>
     </div>
+    </div>
+    
   )
 }
 
