@@ -14,17 +14,11 @@ const Navbar = () => {
             {isLoggedIn ? (
                 <>
                 <Link>
-                    <span>signUp</span>
-                </Link>
-                <Link>
                     <span>login</span>
                 </Link>
                 </>
             ) : (
                 <>
-                <Link>
-                    <span>profile</span>
-                </Link>
                 <Link>
                     <span>history</span>
                 </Link>
