@@ -64,7 +64,7 @@ const Home = () => {
         onChange={(e) => setInput(e.target.value)}
         rows={10}
         placeholder='Enter >'
-        className='resize-none h-[500px] border border-gray-300 p-6 m-6 overflow-auto max-w-full whitespace-pre-wrap break-words text-sm
+        className='resize-none h-[500px] border border-gray-400 p-6 mx-6 mb-6 mt-4 overflow-auto max-w-full whitespace-pre-wrap break-words text-sm
         focus:outline-none'
       />
 
@@ -104,7 +104,7 @@ const Home = () => {
 
       <h2 className='mt-6 ml-8'>OUTPUT</h2>
       <div>
-        <div className='border border-gray-300 p-6 m-6 overflow-auto max-w-full whitespace-pre-wrap break-words text-sm'>
+        <div className='border border-gray-400 p-6 mx-6 mt-4 overflow-auto max-w-full whitespace-pre-wrap break-words text-sm'>
           {JSON.stringify(output, null, 2)}
         </div>
       </div>
